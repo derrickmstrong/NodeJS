@@ -1,0 +1,23 @@
+{
+  "name": "lab-nodejs",
+  "version": "1.0.0",
+  "description": "Lab - NodeJS",
+  "main": "server/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/derrickmstrong/NodeJS.git"
+  },
+  "author": "D. Strong",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/derrickmstrong/NodeJS/issues"
+  },
+  "homepage": "https://github.com/derrickmstrong/NodeJS#readme",
+  "dependencies": {
+    "request": "^2.88.2",
+    "request-promise": "^4.2.5"
+  }
+}
