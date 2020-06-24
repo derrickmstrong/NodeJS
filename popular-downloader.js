@@ -1,1 +1,30 @@
-"[Giveaway] Jelly Key - Born of Forest artisan keycaps","Great parenting example","Aston Martin that was worth £1.5 mil, totalled out","Happy Fathers Day to my single dad who gave everything he had to raise me (1990s)","Low rider batmobile","Girl Likes Me","Greek prostitutes would advertise via their shoes which would say “follow me” and that would be imprinted in the sand","[OC] Top 10 Highest Covid-19 donations with the percentage of their net worth","Don’t defund Planned Parenthood!","SLPT: Efficient way to get drunk during quarantine"
+const path = require('path');
+const fs = require('fs');
+const rp = require('request-promise');
+
+let downloaderPath = path.join(__dirname, '../downloads');
+
+// Advanced
+rp('https://reddit.com/r/popular.json')
+  .then((body) => {
+    JSON.parse(body).data.children.forEach((item) => {
+      if (
+        path.extname(`${item.data.url}`) == '.jpg' ||
+        path.extname(`${item.data.url}`) == '.gif' ||
+        path.extname(`${item.data.url}`) == '.png'
+      ) {
+        rp(item.data.url).then((res) => {
+          fs.appendFileSync(
+            `./downloads/${item.data.id}.jpg`,
+            res,
+            'base64',
+            (err) => {
+              if (err) throw err;
+              console.log('The file has been saved!');
+            }
+          );
+        });
+      }
+    });
+  })
+  .catch((err) => console.log(err));
