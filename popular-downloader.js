@@ -13,7 +13,12 @@ rp('https://reddit.com/r/popular.json')
         path.extname(`${item.data.url}`) == '.gif' ||
         path.extname(`${item.data.url}`) == '.png'
       ) {
-        rp(item.data.url).then((res) => {
+        const options = {
+          uri: item.data.url,
+          encoding: 'base64',
+        };
+        rp(options)
+        .then( res => {
           fs.appendFileSync(
             `./downloads/${item.data.id}.jpg`,
             res,
@@ -23,7 +28,8 @@ rp('https://reddit.com/r/popular.json')
               console.log('The file has been saved!');
             }
           );
-        });
+        })
+        
       }
     });
   })

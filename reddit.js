@@ -1,4 +1,3 @@
-const path = require('path');
 const fs = require('fs');
 const rp = require('request-promise');
 
@@ -6,11 +5,6 @@ const rp = require('request-promise');
 rp('https://reddit.com/r/popular.json')
   .then((res) => JSON.parse(res))
   .then((data) => {
-    // data.children.forEach((item) => {
-    //   fs.appendFileSync(
-    //     redditPath,
-    //     `<h1>${item.data.title}</h1>\n<p>Author: ${item.data.author}</p>\n<p>URL: ${item.data.url}</p>\n\n`
-    //   );
     let articleArr = [];
     data.data.children.forEach((item) => {
       let obj = {
